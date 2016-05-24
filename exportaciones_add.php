@@ -12,8 +12,8 @@
 <body>
 <?php 
 include('menu.php');
+include('/form/formIngresar.php');
 ?>
-AGREGAR
 </body>
 </html>
 

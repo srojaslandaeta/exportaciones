@@ -6,6 +6,7 @@ class Producto{
 	private $ntotalusd;
 	private $nano;
 	private $querysel;
+        private $queryadd;
 	function __construct($nid=NULL,$snom=NULL,$ntot=NULL,$nano=NULL){
 		$this->nidproducto=$nid;
 		$this->snombre=$snom;
@@ -34,11 +35,11 @@ class Producto{
 		
 		if (!$this->querysel){
 		$db=dbconnect();
-		/*Definición del query que permitira ingresar un nuevo registro*/
+		/*Definiciï¿½n del query que permitira ingresar un nuevo registro*/
 		
 			$sqlsel="select idproducto,nombre,totalusd,ano from productos order by nombre";
 		
-			/*Preparación SQL*/
+			/*Preparaciï¿½n SQL*/
 			$this->querysel=$db->prepare($sqlsel);
 		
 			$this->querysel->execute();
@@ -58,10 +59,10 @@ class Producto{
 	
 		$db=dbconnect();
 		
-			/*Definición del query que permitira eliminar un registro*/
+			/*Definiciï¿½n del query que permitira eliminar un registro*/
 			$sqldel="delete from productos where idproducto=:id";
 	
-			/*Preparación SQL*/
+			/*Preparaciï¿½n SQL*/
 			$querydel=$db->prepare($sqldel);
 			
 			$querydel->bindParam(':id',$id);
@@ -70,6 +71,27 @@ class Producto{
 	
 		return $valaux;
 	}
-					
+		
+        
+        function Ingresa($nombre,$total,$ano){
+	
+		$db=dbconnect();
+		
+			/*Definiciï¿½n del query que permitira ingrar un registro*/
+			$sqladd="INSERT INTO PRODUCTOS(NOMBRE,TOTALUSD,ANO) 
+                               VALUES('Industria',24878,2012)";
+	
+			/*Preparaciï¿½n SQL*/
+			$queryadd=$db->prepare($sqladd);
+			
+			$queryadd->bindParam('',$nombre);
+			$queryadd->bindParam('',$total);
+                        $queryadd->bindParam('',$ano);
+                        
+                        
+			$valaux=$queryadd->execute();
+	
+		return $valaux;
+	}
 }
 ?>
